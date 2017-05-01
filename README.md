@@ -14,7 +14,7 @@ Features include
 
 Easy Install
 ------------
-+ Download the zip file [Version 2](https://github.com/FernandoX7/SpStreamer/archive/v2.0.zip). 
++ Download the zip file [Version 2](https://github.com/FernandoX7/SpStreamer/releases/download/v2.0/SpStreamer-V2.zip). 
 + Unarchive it. 
 + Drag and drop into Applications folder and/or just run SpStreamer.app.
 + In case of unidentified developer follow these steps!
