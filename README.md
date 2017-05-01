@@ -14,7 +14,7 @@ Features include
 
 Easy Install
 ------------
-+ Download the zip file [Version 1](https://github.com/FernandoX7/SpStreamer/archive/master.zip). 
++ Download the zip file [Version 2](https://github.com/FernandoX7/SpStreamer/archive/v2.0.zip). 
 + Unarchive it. 
 + Drag and drop into Applications folder and/or just run SpStreamer.app.
 + In case of unidentified developer follow these steps!
@@ -54,4 +54,4 @@ Help
 + Post any issues you find
 + Post new feature requests
 
-+ Enjoy the app? Send me a ☕️ [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4MSQJHRU7U6AS&lc=US&item_name=SpStreamer&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
++ Enjoy the app? Buy me a ☕️ [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4MSQJHRU7U6AS&lc=US&item_name=SpStreamer&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted)
