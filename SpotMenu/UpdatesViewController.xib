@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="alertMessage" destination="DuT-5a-Osk" id="8dw-16-3Yo"/>
                 <outlet property="currentVersion" destination="sGI-vc-kkL" id="Uuw-Pj-eMu"/>
-                <outlet property="versionsTable" destination="XF6-GM-lI6" id="oa1-xk-Eqx"/>
+                <outlet property="versionsTableView" destination="klB-YT-NDh" id="Eos-Vq-ZYC"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -60,8 +60,8 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="108.5" minWidth="40" maxWidth="1000" id="2a8-ML-T0G">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                    <tableColumn identifier="" width="81.5" minWidth="40" maxWidth="1000" id="2a8-ML-T0G">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Version Name">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -73,14 +73,14 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="CiZ-UB-aPQ">
-                                                <rect key="frame" x="1" y="1" width="108.5" height="17"/>
+                                            <tableCellView identifier="VersionCellID" id="rqf-ad-VzS">
+                                                <rect key="frame" x="1" y="1" width="81.5" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCw-YH-6rG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="17"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCH-CD-5Gb">
+                                                        <rect key="frame" x="1" y="0.0" width="81" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Version Name" id="S75-Lw-8nd">
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="2.0" id="TDI-Tp-Z2Y">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -88,13 +88,13 @@
                                                     </textField>
                                                 </subviews>
                                                 <connections>
-                                                    <outlet property="textField" destination="OCw-YH-6rG" id="siD-mK-58t"/>
+                                                    <outlet property="textField" destination="lCH-CD-5Gb" id="6eY-7A-fxK"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn width="323.5" minWidth="40" maxWidth="1000" id="QJP-KP-DEA">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                    <tableColumn identifier="DownloadCellID" width="350.5" minWidth="40" maxWidth="1000" id="QJP-KP-DEA">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Download">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -106,14 +106,14 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
-                                            <tableCellView id="xlY-10-AN0">
-                                                <rect key="frame" x="112.5" y="1" width="323.5" height="17"/>
+                                            <tableCellView identifier="DownloadCellID" id="nnu-UQ-hm6">
+                                                <rect key="frame" x="85.5" y="1" width="350.5" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xol-8y-akm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="323.5" height="17"/>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgg-bQ-5bA">
+                                                        <rect key="frame" x="1" y="0.0" width="350" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Download" id="Glu-XX-eaf">
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="https://www.google.com" id="E6S-1F-8f8">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -121,7 +121,7 @@
                                                     </textField>
                                                 </subviews>
                                                 <connections>
-                                                    <outlet property="textField" destination="Xol-8y-akm" id="yVj-Uz-fBJ"/>
+                                                    <outlet property="textField" destination="lgg-bQ-5bA" id="GRw-zZ-koa"/>
                                                 </connections>
                                             </tableCellView>
                                         </prototypeCellViews>
@@ -129,12 +129,13 @@
                                 </tableColumns>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.66799789667129517" green="0.3159549392372516" blue="0.3909386583454752" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="JYf-gh-7Mk">
                         <rect key="frame" x="1" y="121" width="438" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="EXC-C2-Odc">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="EXC-C2-Odc">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
