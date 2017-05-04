@@ -77,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         eventMonitor?.start()
         
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     }
     
@@ -91,6 +91,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
+        sendNotification();
+    }
+    
+    func sendNotification() {
+        if (Spotify.currentTrack.position < 1) {
+            let notification = NSUserNotification()
+            notification.title = Spotify.currentTrack.title
+            notification.informativeText = Spotify.currentTrack.artist
+            NSUserNotificationCenter.default.deliver(notification)
+        }
     }
     
     func updateTitle(){
