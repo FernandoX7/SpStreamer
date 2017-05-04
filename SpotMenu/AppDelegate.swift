@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     let popover = NSPopover()
     let settingsPopover = NSPopover()
+    let updatesPopover = NSPopover()
     var timer: Timer?
     
     var lastTitle = ""
@@ -61,20 +62,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Github Project", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
+        menu.addItem(NSMenuItem(title: "Check for updates", action: #selector(AppDelegate.checkForUpdates(_:)), keyEquivalent: "U"))
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Settings", action: #selector(AppDelegate.openSettings(_:)), keyEquivalent: "O"))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Empty", action: nil, keyEquivalent: ","))
         
         
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
         settingsPopover.contentViewController = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
-        //        popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        updatesPopover.contentViewController = UpdatesViewController(nibName: "UpdatesViewController", bundle: nil)
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
             if self.popover.isShown {
                 self.closePopover(event)
             }
             if self.settingsPopover.isShown {
+                self.closePopover(event)
+            }
+            if self.updatesPopover.isShown {
                 self.closePopover(event)
             }
         }
@@ -219,6 +224,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    func checkForUpdates(_ sender: NSMenuItem) {
+        if let button = statusItem.button {
+            updatesPopover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+        }
+    }
+    
     func quit(_ sender: NSMenuItem) {
         NSApp.terminate(self)
     }
@@ -233,6 +244,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func closePopover(_ sender: AnyObject?) {
         popover.performClose(sender)
         settingsPopover.performClose(sender)
+        updatesPopover.performClose(sender)
         eventMonitor?.stop()
     }
     
@@ -249,6 +261,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 closePopover(sender)
             }
             
+            if updatesPopover.isShown{
+                closePopover(sender)
+            }
+            
             statusItem.menu = menu
             statusItem.popUpMenu(menu)
             
@@ -258,6 +274,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             statusItem.menu = nil
             if settingsPopover.isShown{
+                closePopover(sender)
+            }
+            if updatesPopover.isShown{
                 closePopover(sender)
             }
             if popover.isShown {
@@ -310,10 +329,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if isDark {
             popover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
             settingsPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+            updatesPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
             UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
         } else {
             popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
             settingsPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            updatesPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
             UserPreferences.setSetting(key: UserPreferences.darkTheme, value: false)
         }
     }
