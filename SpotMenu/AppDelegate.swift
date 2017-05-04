@@ -151,6 +151,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     spotIconName = "StatusBarButtonImage"
                 }
                 
+                // Truncate song title
+                if (isSongNameToggled && !isArtistNameToggled) {
+                    if (title.characters.count >= 22) {
+                        let endIndex = title.index(title.startIndex, offsetBy: 22)
+                        title = title.substring(to: endIndex) + "..."
+                    }
+                }
+                
                 switch state {
                 case .playing:
                     statusItem.button?.image = NSImage(named: spotIconName)
