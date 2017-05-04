@@ -11,10 +11,16 @@ Features include
 + Dark and light theme
 + Customizing the status bar - hide/show icons
 + Displaying song and/or artist name on status bar
++ New song notifications with artist name and song title
+
+New Features in Version 2.1
+---------------------------
+ + New song notifications with artist name and song title
+ + Add default settings
 
 Easy Install
 ------------
-+ Download the zip file [Version 2](https://github.com/FernandoX7/SpStreamer/releases/download/v2.0/SpStreamer-V2.zip). 
++ Download the zip file [Version 2](https://github.com/FernandoX7/SpStreamer/releases/download/v2.1/SpStreamer.zip). 
 + Unarchive it. 
 + Drag and drop into Applications folder and/or just run SpStreamer.app.
 + In case of unidentified developer follow these steps!
