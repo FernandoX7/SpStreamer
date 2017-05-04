@@ -16,6 +16,7 @@ struct UserPreferences {
     static let playPauseIcons = "playPauseIcons"
     static let spotIcon = "spotIcon"
     static let scrollingSongName = "scrollingSongName"
+    static let notificationShown = "notificationShown"
     
     static func setSetting(key: String, value: Bool) {
         UserDefaults.standard.set(value, forKey: key)

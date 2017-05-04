@@ -39,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isPlayPauseIconsToggled = true
     var isSpotIconToggled = true
     var isScrollingSongNameToggled = true
+    var isNotificationToggled = true
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
@@ -91,7 +92,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
-        sendNotification();
+        isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
+        
+        if isNotificationToggled {
+            sendNotification();
+        }
     }
     
     func sendNotification() {
@@ -270,7 +275,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
         isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         isScrollingSongNameToggled = UserPreferences.readSetting(key: UserPreferences.scrollingSongName)
-        
+        isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
         
         checkTheme()
     }
