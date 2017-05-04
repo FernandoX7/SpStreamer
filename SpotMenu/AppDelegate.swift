@@ -39,10 +39,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isPlayPauseIconsToggled = true
     var isSpotIconToggled = true
     var isScrollingSongNameToggled = true
+    var isNotificationToggled = true
+    var isFirstTimeLaunchingSettings = true
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        //        UserPreferences.clearAllSettings()
+//                UserPreferences.clearAllSettings()
+        setDefaultSettings()
         readSettings()
         
         if let button = statusItem.button {
@@ -77,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         eventMonitor?.start()
         
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     }
     
@@ -91,6 +94,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
+        isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
+        
+        if isNotificationToggled {
+            sendNotification();
+        }
+    }
+    
+    func sendNotification() {
+        if (Spotify.currentTrack.position < 1) {
+            let notification = NSUserNotification()
+            notification.title = Spotify.currentTrack.title
+            notification.informativeText = Spotify.currentTrack.artist
+            NSUserNotificationCenter.default.deliver(notification)
+        }
     }
     
     func updateTitle(){
@@ -139,6 +156,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     spotIconName = "no-image"
                 } else {
                     spotIconName = "StatusBarButtonImage"
+                }
+                
+                // Truncate song title
+                if (isSongNameToggled && !isArtistNameToggled) {
+                    if (title.characters.count >= 22) {
+                        let endIndex = title.index(title.startIndex, offsetBy: 22)
+                        title = title.substring(to: endIndex) + "..."
+                    }
                 }
                 
                 switch state {
@@ -252,9 +277,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
         isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         isScrollingSongNameToggled = UserPreferences.readSetting(key: UserPreferences.scrollingSongName)
-        
+        isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
+        isFirstTimeLaunchingSettings = UserPreferences.readSetting(key: UserPreferences.other.firstSettingsLaunch)
         
         checkTheme()
+    }
+    
+    func setDefaultSettings() {
+        isFirstTimeLaunchingSettings = UserPreferences.readSetting(key: UserPreferences.other.firstSettingsLaunch)
+        
+        if (!isFirstTimeLaunchingSettings) {
+            UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
+            UserPreferences.setSetting(key: UserPreferences.artistName, value: false)
+            UserPreferences.setSetting(key: UserPreferences.songName, value: true)
+            UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: false)
+            UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
+            UserPreferences.setSetting(key: UserPreferences.scrollingSongName, value: true)
+            UserPreferences.setSetting(key: UserPreferences.notificationShown, value: true)
+        }
     }
     
     func checkTheme() {

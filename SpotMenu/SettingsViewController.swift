@@ -18,7 +18,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var spotIconCB: NSButton!
     @IBOutlet weak var scrollingSongNameCB: NSButton!
     @IBOutlet weak var alertMessageLabel: NSTextField!
-    
+    @IBOutlet weak var showNotificationCB: NSButton!
     
     // Vars
     var isDarkThemeToggled = true
@@ -28,6 +28,7 @@ class SettingsViewController: NSViewController {
     var isSpotIconToggled = true
     var isScrollingSongNameToggled = true
     var isFirstTimeLaunchingSettings = true
+    var isNotificationToggled = true
     
     let appDel = AppDelegate()
     
@@ -49,12 +50,6 @@ class SettingsViewController: NSViewController {
         // as that's the default value for UserDefaults
         if !isFirstTimeLaunchingSettings {
             print("User has launched settings for the first time")
-            UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
-            UserPreferences.setSetting(key: UserPreferences.artistName, value: true)
-            UserPreferences.setSetting(key: UserPreferences.songName, value: true)
-            UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: true)
-            UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
-            UserPreferences.setSetting(key: UserPreferences.scrollingSongName, value: true)
             // no mo first time
             UserPreferences.setSetting(key: UserPreferences.other.firstSettingsLaunch, value: true)
         }
@@ -68,6 +63,7 @@ class SettingsViewController: NSViewController {
         isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         isScrollingSongNameToggled = UserPreferences.readSetting(key: UserPreferences.scrollingSongName)
         isFirstTimeLaunchingSettings = UserPreferences.readSetting(key: UserPreferences.other.firstSettingsLaunch)
+        isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
     }
     
     func initCheckboxStates() {
@@ -105,6 +101,12 @@ class SettingsViewController: NSViewController {
             scrollingSongNameCB.state = 1
         } else {
             scrollingSongNameCB.state = 0
+        }
+        
+        if isNotificationToggled {
+            showNotificationCB.state = 1
+        } else {
+            showNotificationCB.state = 0
         }
     }
     
@@ -198,6 +200,20 @@ class SettingsViewController: NSViewController {
         if let url = URL(string: "https://goo.gl/ntA8u2"), NSWorkspace.shared().open(url) {
         }
     }
+    
+    @IBAction func toggleNotificationOnSongChange(_ sender: Any) {
+        isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
+        if !isNotificationToggled {
+            UserPreferences.setSetting(key: UserPreferences.notificationShown, value: true)
+            alertMessageLabel.stringValue = "New song notifications will now be shown"
+        } else {
+            UserPreferences.setSetting(key: UserPreferences.notificationShown, value: false)
+            alertMessageLabel.stringValue = "New song notifications are now turned off"
+        }
+        alertMessageLabel.isHidden = false
+        appDel.postUpdateNotification()
+    }
+    
     
     
     
