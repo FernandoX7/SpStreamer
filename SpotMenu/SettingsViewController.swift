@@ -50,13 +50,6 @@ class SettingsViewController: NSViewController {
         // as that's the default value for UserDefaults
         if !isFirstTimeLaunchingSettings {
             print("User has launched settings for the first time")
-            UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
-            UserPreferences.setSetting(key: UserPreferences.artistName, value: true)
-            UserPreferences.setSetting(key: UserPreferences.songName, value: true)
-            UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: true)
-            UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
-            UserPreferences.setSetting(key: UserPreferences.scrollingSongName, value: true)
-            UserPreferences.setSetting(key: UserPreferences.notificationShown, value: true)
             // no mo first time
             UserPreferences.setSetting(key: UserPreferences.other.firstSettingsLaunch, value: true)
         }

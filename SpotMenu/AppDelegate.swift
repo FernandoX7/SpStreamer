@@ -40,10 +40,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isSpotIconToggled = true
     var isScrollingSongNameToggled = true
     var isNotificationToggled = true
+    var isFirstTimeLaunchingSettings = true
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        //        UserPreferences.clearAllSettings()
+//                UserPreferences.clearAllSettings()
+        setDefaultSettings()
         readSettings()
         
         if let button = statusItem.button {
@@ -276,8 +278,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         isScrollingSongNameToggled = UserPreferences.readSetting(key: UserPreferences.scrollingSongName)
         isNotificationToggled = UserPreferences.readSetting(key: UserPreferences.notificationShown)
+        isFirstTimeLaunchingSettings = UserPreferences.readSetting(key: UserPreferences.other.firstSettingsLaunch)
         
         checkTheme()
+    }
+    
+    func setDefaultSettings() {
+        isFirstTimeLaunchingSettings = UserPreferences.readSetting(key: UserPreferences.other.firstSettingsLaunch)
+        
+        if (!isFirstTimeLaunchingSettings) {
+            UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
+            UserPreferences.setSetting(key: UserPreferences.artistName, value: false)
+            UserPreferences.setSetting(key: UserPreferences.songName, value: true)
+            UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: false)
+            UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
+            UserPreferences.setSetting(key: UserPreferences.scrollingSongName, value: true)
+            UserPreferences.setSetting(key: UserPreferences.notificationShown, value: true)
+        }
     }
     
     func checkTheme() {
