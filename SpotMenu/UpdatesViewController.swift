@@ -56,12 +56,24 @@ class UpdatesViewController: NSViewController {
                 self.versionNames.sort()
                 self.versionURLS.sort()
                 self.versionsTableView.reloadData()
+                self.setupAlertMessage()
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    func setupAlertMessage() {
+        let newVersionText = "New version available \(versionNames.last!)"
+        let latestVersion = Double(versionNames.last!)
+        var appVersion = 0.0
         
+        if let appVersionTest = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appVersion = Double(appVersionTest)!
+        }
         
+        if (latestVersion! > appVersion) {
+            alertMessage.stringValue = newVersionText        }
     }
     
     func getAppVersionInfo() {
