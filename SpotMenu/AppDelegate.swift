@@ -231,6 +231,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func checkForUpdates(_ sender: NSMenuItem) {
         if let button = statusItem.button {
             updatesPopover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            eventMonitor?.start()
         }
     }
     
