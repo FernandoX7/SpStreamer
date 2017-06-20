@@ -122,7 +122,10 @@ class UpdatesViewController: NSViewController {
     }
     
     @IBAction func viewChangelog(_ sender: Any) {
-        print("Viewing changelog")
+        let changelogURL = URL(string: "https://github.com/FernandoX7/SpStreamer/releases")
+        if let url = changelogURL, NSWorkspace.shared().open(url) {
+            print("Default browser successfully opened: \(url)")
+        }
     }
     
     
