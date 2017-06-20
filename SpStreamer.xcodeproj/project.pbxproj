@@ -20,6 +20,8 @@
 		ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */; };
 		ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */; };
 		ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD491EB431A2005F68C2 /* UserPreferences.swift */; };
+		ED4E86091EBAE489006BB13A /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4E86071EBAE489006BB13A /* UpdatesViewController.swift */; };
+		ED4E860A1EBAE489006BB13A /* UpdatesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED4E86081EBAE489006BB13A /* UpdatesViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,8 @@
 		ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		ED32BD491EB431A2005F68C2 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		ED4E86071EBAE489006BB13A /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
+		ED4E86081EBAE489006BB13A /* UpdatesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdatesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		2133242A1D79801E0060D48C /* SpStreamer */ = {
 			isa = PBXGroup;
 			children = (
+				ED4E86061EBAE45F006BB13A /* Updates Popover */,
 				ED32BD481EB42E36005F68C2 /* Settings */,
 				21A668171D7F13CE009813E5 /* CustomButton.swift */,
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
@@ -129,6 +134,15 @@
 				ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		ED4E86061EBAE45F006BB13A /* Updates Popover */ = {
+			isa = PBXGroup;
+			children = (
+				ED4E86071EBAE489006BB13A /* UpdatesViewController.swift */,
+				ED4E86081EBAE489006BB13A /* UpdatesViewController.xib */,
+			);
+			name = "Updates Popover";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +213,7 @@
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
+				ED4E860A1EBAE489006BB13A /* UpdatesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +275,7 @@
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
+				ED4E86091EBAE489006BB13A /* UpdatesViewController.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
 				ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */,
