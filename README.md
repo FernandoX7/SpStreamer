@@ -12,6 +12,13 @@ Features include
 + Customizing the status bar - hide/show icons
 + Displaying song and/or artist name on status bar
 + New song notifications with artist name and song title
++ Automatic update system
+
+New Features in Version 2.5 (Current release)
+---------------------------
++ Right clicking the "app" (Song name, icon, whatever you have setup) will bring up a new option, "Check for updates"
++ Checks for updates every 24 hours and sends a notification if you are behind (Will be an option soon)
++ Going into the new updates popover will allow you to download a specific version of the app and see what's available
 
 New Features in Version 2.1
 ---------------------------
@@ -20,7 +27,7 @@ New Features in Version 2.1
 
 Easy Install
 ------------
-+ Download the zip file [Version 2](https://github.com/FernandoX7/SpStreamer/releases/download/v2.1/SpStreamer.zip). 
++ Download the zip file [Version 2.5](https://github.com/FernandoX7/SpStreamer/releases/download/v2.5/SpStreamer.zip). 
 + Unarchive it. 
 + Drag and drop into Applications folder and/or just run SpStreamer.app.
 + In case of unidentified developer follow these steps!
@@ -33,6 +40,14 @@ Because the app is not signed with an official Mac Developer account, you may ge
 + Navigate to Applications (or wherever you installed the app)
 + Right-click on the app and click Open
 + When prompted to confirm, click Open
+
+Incase you still have issues (Or demo is down), do the following
++ Drag and drop into Applications folder
++ Double click SpStreamer app
++ You will get security alert, just click ok
++ Open System Preferences app
++ Click "Security & Privacy"
++ Down below click "Open anyways"
 
 How to Build
 ------------
