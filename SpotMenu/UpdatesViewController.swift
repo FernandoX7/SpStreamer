@@ -33,10 +33,25 @@ class UpdatesViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        checkForUpdates()
+        checkForUpdates(isDoingDailyCheck: false)
     }
     
-    func checkForUpdates() {
+     func dailyCheck() {
+        print("Daily check")
+        let newVersionText = "New version available \(versionNames.last!)"
+        let latestVersion = Double(versionNames.last!)
+        var appVersion = 0.0
+        
+        if let appVersionTest = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appVersion = Double(appVersionTest)!
+        }
+        
+        if (latestVersion! > appVersion) {
+            sendNotification(title: "Update Available", informativeText: newVersionText)
+        }
+    }
+    
+    func checkForUpdates(isDoingDailyCheck: Bool) {
         self.versionNames = [String]()
         self.versionURLS = [String]()
         
@@ -45,7 +60,7 @@ class UpdatesViewController: NSViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-            
+                
                 for (_,subJson):(String, JSON) in json {
                     let name = String(describing: subJson["name"])
                     let url = String(describing: subJson["url"])
@@ -55,12 +70,25 @@ class UpdatesViewController: NSViewController {
                 
                 self.versionNames.sort()
                 self.versionURLS.sort()
-                self.versionsTableView.reloadData()
-                self.setupAlertMessage()
+                
+                if (isDoingDailyCheck) {
+                    self.dailyCheck()
+                }else {
+                    self.versionsTableView.reloadData()
+                    self.setupAlertMessage()
+                }
+                
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    func sendNotification(title: String, informativeText: String) {
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.informativeText = informativeText
+        NSUserNotificationCenter.default.deliver(notification)
     }
     
     func setupAlertMessage() {
@@ -73,7 +101,8 @@ class UpdatesViewController: NSViewController {
         }
         
         if (latestVersion! > appVersion) {
-            alertMessage.stringValue = newVersionText        }
+            alertMessage.stringValue = newVersionText
+        }
     }
     
     func getAppVersionInfo() {
