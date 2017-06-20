@@ -29,27 +29,32 @@ class UpdatesViewController: NSViewController {
         versionsTableView.target = self
         versionsTableView.doubleAction = #selector(tableViewDoubleClick(_:))
         getAppVersionInfo()
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
         checkForUpdates()
     }
     
     func checkForUpdates() {
+        self.versionNames = [String]()
+        self.versionURLS = [String]()
+        
         let url = "https://spstreamer-changelog-server.firebaseio.com/versions.json"
         Alamofire.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                //                print("JSON: \(json)")
-                
+            
                 for (_,subJson):(String, JSON) in json {
                     let name = String(describing: subJson["name"])
                     let url = String(describing: subJson["url"])
                     self.versionNames.append(name)
                     self.versionURLS.append(url)
                 }
+                
                 self.versionNames.sort()
                 self.versionURLS.sort()
-                print(self.versionNames)
-                print(self.versionURLS)
                 self.versionsTableView.reloadData()
             case .failure(let error):
                 print(error)
