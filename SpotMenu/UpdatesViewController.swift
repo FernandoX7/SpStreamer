@@ -41,13 +41,13 @@ class UpdatesViewController: NSViewController {
                 //                print("JSON: \(json)")
                 
                 for (_,subJson):(String, JSON) in json {
-                    //                    print("[\(key)] --- \(subJson)")
                     let name = String(describing: subJson["name"])
                     let url = String(describing: subJson["url"])
                     self.versionNames.append(name)
                     self.versionURLS.append(url)
-                    //                    print("[\(key)] \n Name: \(subJson["name"]) \n URL: \(subJson["url"])")
                 }
+                self.versionNames.sort()
+                self.versionURLS.sort()
                 print(self.versionNames)
                 print(self.versionURLS)
                 self.versionsTableView.reloadData()
@@ -60,19 +60,25 @@ class UpdatesViewController: NSViewController {
     }
     
     func getAppVersionInfo() {
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            self.currentVersion.stringValue = "Version: " + version
+        if let versionNum = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            self.currentVersion.stringValue = "Version: " + versionNum
         }
     }
     
     func tableViewDoubleClick(_ sender:AnyObject) {
-        let textFieldURLValue = universalCell?.textField?.stringValue;
-        let projectUrl = URL(string: textFieldURLValue!)
+        let row = sender.clickedRow
+        let textFieldURLValue = versionURLS[row!]
+        let projectUrl = URL(string: textFieldURLValue)
         
         if let url = projectUrl, NSWorkspace.shared().open(url) {
             print("Default browser successfully opened: \(url)")
         }
     }
+    
+    @IBAction func viewChangelog(_ sender: Any) {
+        print("Viewing changelog")
+    }
+    
     
 }
 
@@ -92,16 +98,17 @@ extension UpdatesViewController: NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
         var text: String = ""
         var cellIdentifier: String = ""
         
         if tableColumn == tableView.tableColumns[0] {
-            text = versionNames[row]
             cellIdentifier = CellIdentifiers.VersionsCell
+            text = versionNames[row]
+            
         } else if tableColumn == tableView.tableColumns[1] {
-            text = versionURLS[row]
             cellIdentifier = CellIdentifiers.DownloadCellID
+            text = versionURLS[row]
+            
         }
         
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
