@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventMonitor?.start()
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
-        updateTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.checkForUpdates), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 86400, target: self, selector: #selector(AppDelegate.checkForUpdates), userInfo: nil, repeats: true) // Check for updates daily
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     }
     
