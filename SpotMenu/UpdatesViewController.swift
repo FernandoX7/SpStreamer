@@ -73,7 +73,7 @@ class UpdatesViewController: NSViewController {
                 
                 if (isDoingDailyCheck) {
                     self.dailyCheck()
-                }else {
+                } else {
                     self.versionsTableView.reloadData()
                     self.setupAlertMessage()
                 }
@@ -102,6 +102,8 @@ class UpdatesViewController: NSViewController {
         
         if (latestVersion! > appVersion) {
             alertMessage.stringValue = newVersionText
+        } else {
+            alertMessage.stringValue = "App is up to date"
         }
     }
     
